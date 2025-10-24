@@ -51,5 +51,16 @@ There are three notebooks: `chatting/chatting.ipynb`, `education/teaching.ipynb`
 ### Training
 Our multi-turn RL pipleine is based on OpenRLHF. To visit the original repo:  [GitHub Repo](https://github.com/OpenRLHF/OpenRLHF/tree/main).
 
-Please find commands and hyper-parameters to run training in `rl_training`
+Please find commands and hyper-parameters to run training in `rl_training`.
+
+1. Either run ```python jsonl_gen.py --task=<task>``` for ```<task>``` ```Chatting```, ```Education```, or ```Therapy``` (does not matter the first time it's run) to create empty ```training_data/in``` and ```training_data/out``` folders within the ```rl_training``` directory, or create these folders manually.
+2. Place conversation jsons of the conversations you would like to include in your training data in ```training_data/in```.
+3. Run ```python jsonl_gen.py --task=<task>``` for ```<task>``` ```Chatting```, ```Education```, ```Therapy``` to pair the specific scenario prompts with the dialogues and conglomerate conversation data into the ```jsonl``` format needed by OpenRLHF. Local paths may need to be replaced by absolute paths in all of the following training scripts. 
+4. (Optional) Train SFT with one of the scripts in ```example_sft.sh```. 
+5. Train KTO with one of the scripts in ```example_kto.sh```. 
+6. To train PPO, first start a vLLM instance on a separate GPU than is planned for PPO training. 
+
+    a. ```reward_func_prompt.py``` has hyperparameters near the top of the file that may need to be changed depending on how the vLLM instance was started (e.g. port, model name). The ```chat_completion``` call can also be replaced by a call to an online hosted model if you do not wish to locally host a separate GPU instance for training.
+    
+    b.
 

@@ -7,7 +7,7 @@ import ray
 metric_model = 'meta-llama/Meta-Llama-3.1-70B-Instruct'
 metadata_path = './training_data/out/metadata.json' # path to metadata json for evals to use
 port = "8001" # port number vLLM is hosted on
-eval_prompt_path = "./config/eval_prompts.json"
+eval_prompt_path = "../config/eval_prompts.json"
 with open(metadata_path, 'r') as f:
     metadata_dict_ref = ray.put(json.load(f))
 

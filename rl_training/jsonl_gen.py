@@ -224,16 +224,16 @@ def main(argv):
     metadata_dict = {}
     prompts = {}
     if flags.FLAGS['task'].value == 'Chatting':
-        with open('./chatting/config_chatting.json', 'r') as f:
+        with open('../chatting/config_chatting.json', 'r') as f:
             prompts = json.load(f)
     elif flags.FLAGS['task'].value == 'Anthology':
-        with open('config/persona_chat/prompts.json', 'r') as f:
+        with open('../config/persona_chat/prompts.json', 'r') as f:
             prompts = json.load(f)
     elif flags.FLAGS['task'].value == 'Education':
-        with open('config/education/config_education.json', 'r') as f:
+        with open('../config/education/config_education.json', 'r') as f:
             prompts = json.load(f)
     elif flags.FLAGS['task'].value == 'Therapy_Old':
-        with open('therapy/config_therapy.json', 'r') as f:
+        with open('../therapy/config_therapy.json', 'r') as f:
             prompts = json.load(f)
     elif flags.FLAGS['task'].value == 'Therapy':
         prompts = {
@@ -252,6 +252,9 @@ def main(argv):
             }
     else:
         raise ValueError("Invalid task name. Please use 'Chatting', 'Anthology', 'Education', 'Therapy_Old', or 'Therapy'.")
+
+    out_dir = os.path.join(flags.FLAGS['folder'].value, 'in')
+    os.makedirs(out_dir, exist_ok=True)
 
     for filename in tqdm(glob.glob(flags.FLAGS['folder'].value + '/in/*.json')): # ./training_data/in/*.json
         print("begin file", filename)
@@ -286,6 +289,8 @@ def main(argv):
     train_data = jsonl_total[:train_len]
     eval_data = jsonl_total[train_len:]
 
+    out_dir = os.path.join(flags.FLAGS['folder'].value, 'out')
+    os.makedirs(out_dir, exist_ok=True)
     # Save to JSONL
     with open(flags.FLAGS['folder'].value + '/out/train.jsonl', 'w') as f:
         for item in train_data:
