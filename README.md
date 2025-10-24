@@ -45,10 +45,10 @@ pip install -e .
 pip install openrlhf[vllm]
 ```
 
-## Measuring Consistency 
+### Measuring Consistency 
 There are three notebooks: `chatting/chatting.ipynb`, `education/teaching.ipynb` and `therapy/patient-therapist.ipynb` that provide the pipeline to generate personas, dialogue, and measure consistency for the Chit-Chat, Teaching, and Mental Health Tasks.
 
-## Training
+### Training
 Our multi-turn RL pipleine is based on OpenRLHF. To visit the original repo:  [GitHub Repo](https://github.com/OpenRLHF/OpenRLHF/tree/main).
 
 Please find commands and hyper-parameters to run training in `rl_training`
