@@ -1,1 +1,1 @@
-# consistent-LLMs
+neurips-consistency
