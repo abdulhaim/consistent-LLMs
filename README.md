@@ -61,6 +61,8 @@ Please find commands and hyper-parameters to run training in `rl_training`.
 6. To train PPO, first start a vLLM instance on a separate GPU than is planned for PPO training. 
 
     a. ```reward_func_prompt.py``` has hyperparameters near the top of the file that may need to be changed depending on how the vLLM instance was started (e.g. port, model name). The ```chat_completion``` call can also be replaced by a call to an online hosted model if you do not wish to locally host a separate GPU instance for training.
-    
-    b.
+
+This software and/or data was deposited in the BAIR Open Research Commons repository on Oct 23, 2025.
+
+
 
